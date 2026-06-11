@@ -1,14 +1,13 @@
 import pandas as pd
+from pathlib import Path
 
-RAW_PATH = 'data/raw/f1_all.parquet'
-PROCESSED_STOPS_PATH = 'data/processed/df_stops.parquet'
-PROCESSED_TREATMENT_PATH = 'data/processed/df_treatment.parquet'
-
+PROCESSED_PATH = Path('data/processed/')
 
 def build_dataset():
-    df = pd.read_parquet(RAW_PATH)
+    df = pd.read_parquet('data/raw/f1_all.parquet')
 
     df_treatment = df.copy()
+    
     df_treatment['Compound'] = df_treatment['Compound'].replace({'None': 'UNKNOWN'})
 
     df_treatment = df_treatment.drop(columns=[
@@ -44,8 +43,10 @@ def build_dataset():
     df_stops = df_stops.merge(temp_por_stint, on=['raceId', 'driverId', 'Stint'], how='left')
     df_stops = df_stops.merge(composto_por_stint, on=['raceId', 'driverId', 'Stint'], how='left')
 
-    df_stops.to_parquet(PROCESSED_STOPS_PATH, index=False)
-    df_treatment.to_parquet(PROCESSED_TREATMENT_PATH, index=False)
+    PROCESSED_PATH.mkdir(parents=True, exist_ok=True)
+
+    df_stops.to_parquet('data/processed/df_stops.parquet', index=False)
+    df_treatment.to_parquet('data/processed/df_treatment.parquet', index=False)
 
     print(f'df_treatment: {df_treatment.shape}')
     print(f'df_stops: {df_stops.shape[0]} pit stops | colunas: {df_stops.columns.tolist()}')
