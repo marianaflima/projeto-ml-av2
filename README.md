@@ -53,16 +53,32 @@ projeto-ml-av2/
 
 ## Instalação
 
+### Com uv (recomendado)
+
 ```bash
 uv venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
 
+### Com pip
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ## Execução
 
 ```bash
 uv run main.py
+```
+
+Ou, com pip:
+
+```bash
+python main.py
 ```
 
 O pipeline executa 5 etapas: build dataset → build features → treinamento → avaliação → visualização.
