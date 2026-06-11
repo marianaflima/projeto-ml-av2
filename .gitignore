@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model artifacts
+*.joblib
+
+# Data files (too large for versioning)
+*.parquet
+*.csv
+*.txt
+data/raw/
+data/processed/
