@@ -6,17 +6,15 @@ Fazer um modelo preditivo que determine a melhor volta para se realizar uma troc
 
 ## Perguntas de Pesquisa
 
-- O desgaste dos pneus (`TyreLife`) influencia o momento do pit stop?
-- Diferentes compostos resultam em paradas em voltas diferentes?
-- A temperatura da pista antecipa ou posterga a troca de pneu?
-- Dados climáticos melhoram a previsão da volta de parada?
-- O modelo generaliza para diferentes circuitos?
+1. O número do stint (Stint) influencia a volta em que o pit stop ocorre?
+2. O composto do pneu (Compound) resulta em voltas de parada significativamente diferentes?
+3. A temperatura da pista (TrackTemp) antecipa ou posterga o momento do pit stop?
 
 ## Hipóteses
 
-- Pneus duros (HARD) permitem stints mais longos, resultando em pit stops mais tardios.
-- Temperaturas de pista mais altas aceleram a degradação e antecipam a parada.
-- Variáveis climáticas reduzem o erro do modelo.
+1. Stints mais avançados (maior Stint) estão associados a pit stops em voltas mais tardias, refletindo a progressão natural da corrida.
+2. Compostos macios (SOFT) antecipam a parada; duros (HARD) permitem stints mais longos.
+3. Temperaturas de pista mais altas aceleram a degradação dos pneus, antecipando a volta de parada.
 
 ## Dimensões do Dataset
 
