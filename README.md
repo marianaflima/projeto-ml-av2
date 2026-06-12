@@ -20,7 +20,7 @@ O arquivo `data/raw/f1_all.parquet` não está versionado no Git. Para obtê-lo,
 
 [f1_all.parquet](https://www.kaggle.com/datasets/navenkumar1998/formula-1-dataset-with-weather-and-tyre-features)
 
->Deve-se criar os diretórios `/data/raw` e `/data/processed` e inserir o arquivo no diretório `/data/raw`, para evitar possíveis problemas de execução no pipeline, pois ele precisa da existência de ambos para funcionar.
+>Deve-se criar o diretório `data/raw` e inserir o arquivo nele, pois o pipeline foi configurado para procurar o dataset especificamente em `data/raw/f1_all.parquet`. Caso o arquivo esteja em outro diretório, a execução poderá falhar.
 
 ### Features utilizadas
 
