@@ -60,27 +60,27 @@ Os modelos foram avaliados com RMSE (raiz do erro quadrático médio), MAE (erro
 
 A análise exploratória revelou padrões relevantes para a modelagem. A distribuição da variável alvo pitstop_turn, apresentada na Figura 1, mostra assimetria à direita com maior concentração entre as voltas 15 e 40, e outliers na volta 1, indicativos de incidentes no início da prova.
 
-![Figura 1](/src/visualization/histograma_pitstop.png)
+![Figura 1](/article/figures/histograma_pitstop.png)
 **Figura 1** - Distribuição da frequência de pit stops por volta da corrida. A linha vermelha tracejada marca os outliers da volta 1.
 
 O mapa de calor das correlações entre variáveis numéricas, apresentado na Figura 2, revela que Stint e TyreLife são as variáveis com maior correlação positiva com o número da volta (0,63 e 0,51, respectivamente), enquanto as variáveis climáticas entre si apresentam correlações moderadas, como AirTemp e TrackTemp (0,64).
 
-![Figura 2](/src/visualization/heatmap_correlacao.png)
+![Figura 2](/article/figures/heatmap_correlacao.png)
 **Figura 2** - Mapa de calor das correlações de Pearson entre as variáveis numéricas do conjunto de dados. Valores próximos de 1 (vermelho) indicam correlação positiva forte; próximos de -1 (azul), correlação negativa forte.
 
 A correlação entre TyreLife e milliseconds foi de aproximadamente -0,23. Embora contraintuitiva, esse resultado reflete um efeito de confundimento: pneus velhos aparecem majoritariamente em corridas secas com compostos duros, enquanto pneus novos surgem após relargadas em safety car com tempos de volta atipicamente lentos. A correlação captura esse padrão agregado, não a curva real de degradação de um pneu específico. Conforme apontado por Faceli et al. (2021), correlações lineares podem não capturar a totalidade de relações não lineares complexas. Essa dinâmica é visível na Figura 3, que mostra o tempo médio de volta por idade do pneu: o tempo cai acentuadamente nos primeiros stints, quando o pneu aquece e atinge aderência ideal, estabiliza-se na faixa intermediária e apresenta picos acentuados em idades avançadas, que correspondem a situações atípicas de poucos registros.
 
-![Figura 3](/src/visualization/linha_tyrelife_milliseconds.png)
+![Figura 3](/article/figures/linha_tyrelife_milliseconds.png)
 **Figura 3** - Evolução do tempo médio de volta (em milissegundos) conforme o pneu envelhece. Os picos nas voltas 47 e 53 refletem situações atípicas com poucos registros.
 
 O gráfico de dispersão da Figura 4 confirma a tendência de paradas mais precoces em pistas mais quentes, coerente com a Hipótese 3 de degradação acelerada pelo calor. A linha de regressão vermelha evidencia a inclinação negativa, mas a dispersão considerável dos pontos sinaliza que a temperatura é apenas um dos fatores em jogo.
 
-![Figura 4](/src/visualization/dispersao_tracktemp_pitstop.png)
+![Figura 4](/article/figures/dispersao_tracktemp_pitstop.png)
 **Figura 4** - Gráfico de dispersão entre temperatura da pista (eixo x) e volta em que o pit stop ocorreu (eixo y). A linha vermelha representa a tendência linear ajustada.
 
 O boxplot da Figura 5 confirma a Hipótese 2: compostos HARD resultam em stints mais longos, com mediana próxima de 37 voltas, SOFT apresenta paradas mais precoces, com mediana em torno de 17 voltas e maior variabilidade, e os compostos INTERMEDIATE e WET são outliers estratégicos dependentes de condições climáticas, não do desgaste convencional.
 
-![Figura 5](/src/visualization/boxplot_compound_pitstop.png)
+![Figura 5](/article/figures/boxplot_compound_pitstop.png)
 **Figura 5** - Boxplot da volta do pit stop segmentado por composto do pneu. O composto UNKNOWN foi excluído para maior clareza visual.
 
 ### 3.2 Desempenho dos Modelos
@@ -129,7 +129,7 @@ Regressão Linear e Ridge são estatisticamente equivalentes, enquanto ambas sup
 
 A Figura 6 apresenta os coeficientes do modelo final após padronização das variáveis numéricas, e a Tabela 4 lista os valores correspondentes.
 
-![Figura 6](/src/visualization/importancia_features.png)
+![Figura 6](/article/figures/importancia_features.png)
 **Figura 6** - Coeficientes padronizados do modelo de Regressão Linear. Barras azuis indicam efeito negativo sobre a volta de parada (parada antecipada); a barra vermelha indica efeito positivo (parada postergada).
 
 **Tabela 4 - Coeficientes do modelo final (Regressão Linear)**
@@ -149,7 +149,7 @@ Os coeficientes do modelo confirmam as três hipóteses de pesquisa. O composto 
 
 A análise dos resíduos, apresentada na Figura 7, revelou resíduo médio de 0,424 voltas, próximo de zero e indicativo de ausência de viés sistemático. O desvio-padrão foi de 12,518 voltas, o resíduo máximo chegou a +39,4 voltas e o mínimo a -35,4 voltas.
 
-![Figura 7](/src/visualization/diagnostico_residuos.png)
+![Figura 7](/article/figures/diagnostico_residuos.png)
 **Figura 7** - À esquerda, dispersão entre valores preditos e reais; a linha tracejada representa a previsão perfeita. À direita, distribuição dos resíduos com a curva de densidade sobreposta; a linha vermelha tracejada marca o resíduo zero.
 
 O gráfico predito versus real evidencia que o modelo captura a tendência geral, com os pontos se agrupando em torno da linha diagonal ideal, mas com dispersão notável para valores mais elevados de pitstop_turn. A distribuição dos resíduos apresenta forma aproximadamente gaussiana centrada em zero, o que é consistente com as premissas do modelo linear, embora a cauda direita mais pesada revele situações em que o modelo subestima consideravelmente a volta de parada. A alta variabilidade dos resíduos indica que fatores não capturados pelas features atuais exercem influência considerável sobre a volta de parada.
