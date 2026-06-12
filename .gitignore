@@ -17,7 +17,6 @@ wheels/
 
 # Data files (too large for versioning)
 *.parquet
-*.csv
-*.txt
+/experiments
 data/raw/
 data/processed/
