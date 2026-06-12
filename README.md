@@ -10,7 +10,7 @@ Definir em qual volta um piloto deve realizar seu pit stop com base em informaç
 
 ## Dataset
 
-- **Fonte:** <!-- insira a fonte aqui -->
+- **Fonte:** https://www.kaggle.com/datasets/navenkumar1998/formula-1-dataset-with-weather-and-tyre-features
 - **Formato bruto:** 69.230 linhas × 29 colunas (uma linha por volta de cada piloto)
 - **Formato modelagem:** Agregado por stint (~9.600 registros de pit stop)
 
@@ -19,6 +19,8 @@ Definir em qual volta um piloto deve realizar seu pit stop com base em informaç
 O arquivo `data/raw/f1_all.parquet` não está versionado no Git. Para obtê-lo, é necessário criar uma conta no Kaggle e fazer download:
 
 [f1_all.parquet](https://www.kaggle.com/datasets/navenkumar1998/formula-1-dataset-with-weather-and-tyre-features)
+
+>Deve-se criar os diretórios `/data/raw` e `/data/processed` e inserir o arquivo no diretório `/data/raw`, para evitar possíveis problemas de execução no pipeline, pois ele precisa da existência de ambos para funcionar.
 
 ### Features utilizadas
 
