@@ -5,6 +5,10 @@ from datetime import datetime
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from pathlib import Path
+
+EXPERIMENTS_PATH = Path('experiments/')
+EXPERIMENTS_PATH.mkdir(parents=True, exist_ok=True)
 
 PREPROCESSOR_PATH = 'experiments/preprocessor.joblib'
 SPLIT_PATH = 'experiments/split_data.joblib'
